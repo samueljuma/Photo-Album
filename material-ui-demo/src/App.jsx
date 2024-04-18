@@ -1,9 +1,12 @@
 import React from "react";
 import { Typography, Grid, Toolbar, Container, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Button } from '@mui/material'
 import { PhotoCamera } from '@mui/icons-material'
-import { Main, CustomDiv, StyledGrid, StyledButton } from './styles';
+import styles from './styles';
 
 const App = () => {
+
+    const { Main, CustomDiv, StyledGrid, StyledButton } = styles; 
+    
     return (
         <>
             <CssBaseline />
