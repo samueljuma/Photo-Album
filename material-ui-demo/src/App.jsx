@@ -1,16 +1,31 @@
 import React from "react";
 import { Typography, Grid, Toolbar, Container, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Button } from '@mui/material'
-import { PhotoCamera } from '@mui/icons-material'
+import { PhotoCamera } from '@mui/icons-material';
 import styles from './styles';
 
 const App = () => {
+    const {
+        Main,
+        CustomDiv,
+        StyledGrid,
+        StyledButton,
+        StyledContainer,
+        StyledCard,
+        StyledCardMedia,
+        StyledCardContent,
+    } = styles; // Destructure styles object
 
-    const { Main, CustomDiv, StyledGrid, StyledButton } = styles; 
-    
+    const cards = Array.from({ length: 20}, (_, index) => ({
+        id: index,
+        image: `https://source.unsplash.com/random?sig=${index}`,
+        title: `Image Title ${index + 1}`,
+        description: `Description of image ${index + 1}`,
+    }));
+
     return (
         <>
             <CssBaseline />
-            <AppBar position="relative">
+            <AppBar position="fixed">
                 <Toolbar>
                     <PhotoCamera fontSize="large" sx={{ marginRight: 2 }} />
                     <Typography variant="h6"> Photo Album</Typography>
@@ -33,12 +48,41 @@ const App = () => {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <StyledButton variant="outlined" color="primary" fullWidth>
-                                    Secondary Action
+                                    Click Me
                                 </StyledButton>
                             </Grid>
                         </StyledGrid>
                     </Container>
                 </CustomDiv>
+
+                {/* <StyledContainer> */}
+                    <StyledGrid container spacing={2}>
+                        {cards.map((card) => (
+                            <StyledGrid item key={card.id} xs={12} sm={6} md={4} lg={3}>
+                                <StyledCard border="5px solid" borderColor="primary">
+                                    <StyledCardMedia
+                                        image={card.image}
+                                        title={card.title}
+                                    />
+                                    <StyledCardContent>
+                                        <Typography variant="h5" gutterBottom>
+                                            {card.title}
+                                        </Typography>
+                                        <Typography>
+                                            {card.description}
+                                        </Typography>
+                                    </StyledCardContent>
+                                    <CardActions>
+                                        <StyledButton size="small" color="primary" fullWidth>View</StyledButton>
+                                        <StyledButton size="small" color="primary" fullWidth>Edit</StyledButton>
+                                    </CardActions>
+                                </StyledCard>
+                            </StyledGrid>
+                        ))}
+
+                    </StyledGrid>
+                {/* </StyledContainer> */}
+
             </Main>
         </>
     );
